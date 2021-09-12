@@ -30,7 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_linkify: ^5.0.2
   qr_code_scanner: ^0.5.2
+  url_launcher: ^6.0.10
 
 dev_dependencies:
   flutter_test:
