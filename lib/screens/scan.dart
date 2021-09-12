@@ -1,7 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import 'data.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({Key? key}) : super(key: key);
@@ -18,18 +18,13 @@ class _ScanScreenState extends State<ScanScreen> {
 
   void _initController(QRViewController controller) {
     _controller = controller;
-    _controller?.scannedDataStream.listen((data) {
+    _controller?.scannedDataStream.distinct().listen((data) async {
+      _controller!.pauseCamera();
+      await Navigator.push(context, MaterialPageRoute(
+        builder: (_) => DataScreen(data: data.code),
+      ));
+      _controller!.resumeCamera();
     });
-  }
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isAndroid) {
-      _controller?.pauseCamera();
-    } else if (Platform.isIOS) {
-      _controller?.resumeCamera();
-    }
   }
 
   @override
