@@ -13,14 +13,17 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
-  final GlobalKey _qrKey = GlobalKey(debugLabel: 'QR');
+  final GlobalKey _qrKey = GlobalKey();
   late final Future<SharedPreferences> _prefs;
 
   QRViewController? _controller;
   bool _flash = false;
 
   void _initController(QRViewController controller) {
-    _controller = controller;
+    setState(() {
+      _controller = controller;
+    });
+
     _controller?.scannedDataStream.distinct().listen((data) async {
       _updatePref('scans', data.code);
       _updatePref('dates', DateTime.now().toString());
@@ -86,29 +89,32 @@ class _ScanScreenState extends State<ScanScreen> {
             key: _qrKey,
             onQRViewCreated: _initController,
           ),
-          ColoredBox(
-            color: Colors.black.withAlpha(128),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.flip_camera_android, color: Colors.white),
-                  onPressed: () {
-                    _controller?.flipCamera();
-                  },
-                ),
-                IconButton(
-                  icon: Icon(_flash ? Icons.flash_on : Icons.flash_off, color: Colors.white),
-                  onPressed: () {
-                    _controller?.toggleFlash();
-                    setState(() {
-                      _flash = !_flash;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
+          if (_controller != null)
+            ColoredBox(
+              color: Colors.black.withAlpha(128),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.flip_camera_android, color: Colors.white),
+                    onPressed: () {
+                      _controller?.flipCamera();
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(_flash ? Icons.flash_on : Icons.flash_off, color: Colors.white),
+                    onPressed: () {
+                      _controller?.toggleFlash();
+                      setState(() {
+                        _flash = !_flash;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            )
+          else
+            const Center(child: CircularProgressIndicator()),
         ],
       ),
     );
