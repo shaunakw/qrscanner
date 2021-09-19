@@ -11,9 +11,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'QR Scanner',
-      home: ScanScreen(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blueGrey,
+        ),
+      ),
+      home: const ScanScreen(),
     );
   }
 }
