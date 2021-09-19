@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -97,13 +98,13 @@ class _ScanScreenState extends State<ScanScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.flip_camera_android, color: Colors.white),
+                    icon: const Icon(MdiIcons.cameraFlipOutline, color: Colors.white),
                     onPressed: () {
                       _controller?.flipCamera();
                     },
                   ),
                   IconButton(
-                    icon: Icon(_flash ? Icons.flash_on : Icons.flash_off, color: Colors.white),
+                    icon: Icon(_flash ? MdiIcons.flash : MdiIcons.flashOutline, color: Colors.white),
                     onPressed: () {
                       _controller?.toggleFlash();
                       setState(() {

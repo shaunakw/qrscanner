@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data.dart';
@@ -54,7 +55,7 @@ class HistoryScreen extends StatelessWidget {
                 alignment: AlignmentDirectional.centerEnd,
                 color: Colors.red,
                 padding: const EdgeInsets.only(right: 10.0),
-                child: const Icon(Icons.delete, color: Colors.white, size: 28.0),
+                child: const Icon(MdiIcons.trashCanOutline, color: Colors.white, size: 28.0),
               ),
               confirmDismiss: (direction) => _confirmDelete(context),
               onDismissed: (direction) {
