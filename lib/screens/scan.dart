@@ -24,7 +24,8 @@ class _ScanScreenState extends State<ScanScreen> {
       _controller = controller;
     });
 
-    _controller?.scannedDataStream.distinct().listen((data) async {
+    barcodeEquals(Barcode b1, Barcode b2) => b1.code == b2.code;
+    _controller?.scannedDataStream.distinct(barcodeEquals).listen((data) async {
       _updatePref('scans', data.code);
       _updatePref('dates', DateTime.now().toString());
 

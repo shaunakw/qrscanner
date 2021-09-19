@@ -34,6 +34,7 @@ class DataScreen extends StatelessWidget {
             Linkify(
               text: data,
               style: const TextStyle(fontSize: 20.0),
+              options: const LinkifyOptions(humanize: false),
               onOpen: (link) => _openURL(context, link.url),
             ),
           ],
