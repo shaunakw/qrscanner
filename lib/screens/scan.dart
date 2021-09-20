@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -72,7 +72,7 @@ class _ScanScreenState extends State<ScanScreen> {
         title: const Text('Scan'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.history),
+            icon: const FaIcon(FontAwesomeIcons.history, size: 20.0),
             onPressed: () async {
               final prefs = await _prefs;
 
@@ -93,18 +93,19 @@ class _ScanScreenState extends State<ScanScreen> {
           ),
           if (_controller != null)
             ColoredBox(
-              color: Colors.black.withAlpha(128),
+              color: Colors.black.withOpacity(0.5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: const Icon(MdiIcons.cameraFlipOutline, color: Colors.white),
+                    icon: const FaIcon(FontAwesomeIcons.syncAlt, color: Colors.white, size: 20.0),
                     onPressed: () {
                       _controller?.flipCamera();
                     },
                   ),
                   IconButton(
-                    icon: Icon(_flash ? MdiIcons.flash : MdiIcons.flashOutline, color: Colors.white),
+                    icon: FaIcon(FontAwesomeIcons.bolt,
+                        color: Colors.white.withOpacity(_flash ? 1.0 : 0.5), size: 20.0),
                     onPressed: () {
                       _controller?.toggleFlash();
                       setState(() {

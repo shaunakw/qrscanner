@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data.dart';
@@ -26,7 +26,7 @@ class HistoryScreen extends StatelessWidget {
             },
           ),
           TextButton(
-            child: const Text('DELETE', style: TextStyle(color: Colors.red)),
+            child: const Text('DELETE', style: TextStyle(color: Colors.redAccent)),
             onPressed: () {
               Navigator.pop(context, true);
             },
@@ -53,9 +53,9 @@ class HistoryScreen extends StatelessWidget {
               direction: DismissDirection.endToStart,
               background: Container(
                 alignment: AlignmentDirectional.centerEnd,
-                color: Colors.red,
+                color: Colors.redAccent,
                 padding: const EdgeInsets.only(right: 10.0),
-                child: const Icon(MdiIcons.trashCanOutline, color: Colors.white, size: 28.0),
+                child: const FaIcon(FontAwesomeIcons.trashAlt, color: Colors.white),
               ),
               confirmDismiss: (direction) => _confirmDelete(context),
               onDismissed: (direction) {

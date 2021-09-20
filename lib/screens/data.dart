@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,7 +43,7 @@ class DataScreen extends StatelessWidget {
         title: Text(date == null ? 'New Scan' : 'Scan from ${DateFormat.yMd().format(date!)}'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.copy),
+            icon: const FaIcon(FontAwesomeIcons.copy, size: 20.0),
             onPressed: () => _copyData(context),
           ),
         ],
