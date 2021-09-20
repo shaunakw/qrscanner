@@ -69,7 +69,7 @@ class HistoryScreen extends StatelessWidget {
                 subtitle: Text(DateFormat.yMd().add_jm().format(DateTime.parse(dates[i]))),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => DataScreen(data: scans[i]),
+                    builder: (_) => DataScreen(data: scans[i], date: DateTime.parse(dates[i])),
                   ));
                 },
               ),

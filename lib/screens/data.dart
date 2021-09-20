@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DataScreen extends StatelessWidget {
-  const DataScreen({Key? key, required this.data}) : super(key: key);
+  const DataScreen({Key? key, required this.data, this.date}) : super(key: key);
 
   final String data;
+  final DateTime? date;
 
   void _copyData(BuildContext context) async {
     await Clipboard.setData(ClipboardData(text: data));
@@ -37,7 +39,7 @@ class DataScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Scan'),
+        title: Text(date == null ? 'New Scan' : 'Scan from ${DateFormat.yMd().format(date!)}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.copy),
