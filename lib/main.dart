@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/scan.dart';
 
 void main() {
@@ -16,6 +16,9 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.blueGrey,
+        ),
+        textTheme: GoogleFonts.ubuntuTextTheme().copyWith(
+          headline6: GoogleFonts.ubuntu(fontWeight: FontWeight.w500),
         ),
       ),
       home: const ScanScreen(),
