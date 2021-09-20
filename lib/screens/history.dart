@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../widgets/buttons.dart';
 import 'data.dart';
 
 const int historySize = 50;
@@ -44,6 +45,7 @@ class HistoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('History'),
+        leading: const FaBackButton(),
       ),
       body: ListView(
         children: [

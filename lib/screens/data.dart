@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../widgets/buttons.dart';
+
 class DataScreen extends StatelessWidget {
   const DataScreen({Key? key, required this.data, this.date}) : super(key: key);
 
@@ -41,6 +43,7 @@ class DataScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(date == null ? 'New Scan' : 'Scan from ${DateFormat.yMd().format(date!)}'),
+        leading: const FaBackButton(),
         actions: [
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.copy, size: 20.0),
