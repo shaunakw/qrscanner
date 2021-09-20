@@ -17,8 +17,8 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.blueGrey,
         ),
-        textTheme: GoogleFonts.ubuntuTextTheme().copyWith(
-          headline6: GoogleFonts.ubuntu(fontWeight: FontWeight.w500),
+        textTheme: GoogleFonts.nunitoSansTextTheme().copyWith(
+          headline6: GoogleFonts.nunitoSans(fontWeight: FontWeight.w700),
         ),
       ),
       home: const ScanScreen(),
