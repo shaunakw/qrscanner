@@ -1,6 +1,6 @@
-# qrscanner
+# QR Scanner
 
-A simple Flutter app to scan QR codes.
+A simple app to scan QR codes and remember those scans.
 
 ## Getting Started
 
