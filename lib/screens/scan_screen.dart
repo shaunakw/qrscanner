@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qrscanner/models/scan.dart';
 import 'package:qrscanner/screens/data_screen.dart';
 import 'package:qrscanner/screens/history_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({Key? key}) : super(key: key);
@@ -14,7 +15,6 @@ class ScanScreen extends StatefulWidget {
 
 class _ScanScreenState extends State<ScanScreen> {
   final GlobalKey _qrKey = GlobalKey();
-  late final Future<SharedPreferences> _prefs;
 
   QRViewController? _controller;
   bool _flash = false;
@@ -26,41 +26,14 @@ class _ScanScreenState extends State<ScanScreen> {
 
     barcodeEquals(Barcode b1, Barcode b2) => b1.code == b2.code;
     _controller?.scannedDataStream.distinct(barcodeEquals).listen((data) async {
-      _updatePref('scans', data.code);
-      _updatePref('dates', DateTime.now().toString());
+      final scan = Scan(data.code);
+      Hive.box<Scan>('history').add(scan);
 
       _controller!.pauseCamera();
       await Navigator.push(context, MaterialPageRoute(
-        builder: (_) => DataScreen(data: data.code),
+        builder: (_) => DataScreen(scan: scan, isNew: true),
       ));
       _controller!.resumeCamera();
-    });
-  }
-
-  void _initPrefs(SharedPreferences prefs) {
-    if (!prefs.containsKey('scans') || !prefs.containsKey('dates')) {
-      prefs.setStringList('scans', []);
-      prefs.setStringList('dates', []);
-    }
-  }
-
-  void _updatePref(String key, String value) async {
-    final prefs = await _prefs;
-    final list = prefs.getStringList(key)!;
-
-    list.insert(0, value);
-    if (list.length > historySize) {
-      list.removeLast();
-    }
-    prefs.setStringList(key, list);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _prefs = SharedPreferences.getInstance().then((prefs) {
-      _initPrefs(prefs);
-      return prefs;
     });
   }
 
@@ -73,11 +46,9 @@ class _ScanScreenState extends State<ScanScreen> {
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.history, size: 20.0),
             onPressed: () async {
-              final prefs = await _prefs;
-
               _controller?.pauseCamera();
               await Navigator.push(context, MaterialPageRoute(
-                builder: (_) => HistoryScreen(prefs: prefs),
+                builder: (_) => const HistoryScreen(),
               ));
               _controller?.resumeCamera();
             },
