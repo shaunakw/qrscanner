@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:qrscanner/screens/data_screen.dart';
+import 'package:qrscanner/widgets/buttons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../widgets/buttons.dart';
-import 'data_screen.dart';
 
 const int historySize = 50;
 

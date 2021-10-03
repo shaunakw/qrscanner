@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'screens/scan_screen.dart';
+import 'package:qrscanner/screens/scan_screen.dart';
 
 void main() {
   runApp(const App());

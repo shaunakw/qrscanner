@@ -3,9 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:qrscanner/widgets/buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../widgets/buttons.dart';
 
 class DataScreen extends StatelessWidget {
   const DataScreen({Key? key, required this.data, this.date}) : super(key: key);
